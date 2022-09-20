@@ -125,7 +125,8 @@ public class Database {
         try {
 
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_players` (\n" +
-                    "  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',\n" +
+                    "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                    "  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
                     "  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
                     "  `boat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n" +
                     "  PRIMARY KEY (`uuid`)\n" +
@@ -133,7 +134,7 @@ public class Database {
 
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_tracks` (\n" +
                     "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n" +
+                    "  `user_id` int(11) NOT NULL,\n" +
                     "  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
                     "  `dateCreated` bigint(30) DEFAULT NULL,\n" +
                     "  `guiItem` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
@@ -150,7 +151,7 @@ public class Database {
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_finishes` (\n" +
                     "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
                     "  `trackId` int(11) NOT NULL,\n" +
-                    "  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
+                    "  `user_id` int(11) NOT NULL,\n" +
                     "  `date` bigint(30) NOT NULL,\n" +
                     "  `time` int(11) NOT NULL,\n" +
                     "  `isRemoved` tinyint(1) NOT NULL,\n" +
@@ -173,7 +174,7 @@ public class Database {
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_events` (\n" +
                     "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
                     "  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
-                    "  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
+                    "  `user_id` int(11) NOT NULL,\n" +
                     "  `date` bigint(30) DEFAULT NULL,\n" +
                     "  `track` int(11) DEFAULT NULL,\n" +
                     "  `state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
@@ -200,7 +201,7 @@ public class Database {
 
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_drivers` (\n" +
                     "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
+                    "  `user_id` int(11) NOT NULL,\n" +
                     "  `heatId` int(11) NOT NULL,\n" +
                     "  `position` int(11) NOT NULL,\n" +
                     "  `startPosition` int(11) NOT NULL,\n" +
@@ -213,7 +214,7 @@ public class Database {
 
             DB.executeUpdate("CREATE TABLE IF NOT EXISTS `ts_laps` (\n" +
                     "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
+                    "  `user_id` int(11) NOT NULL,\n" +
                     "  `heatId` int(11) NOT NULL,\n" +
                     "  `trackId` int(11) NOT NULL,\n" +
                     "  `lapStart` bigint(30) DEFAULT NULL,\n" +
